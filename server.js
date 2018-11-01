@@ -14,6 +14,29 @@ app.use(express.json());
 
 // CRUD operations
 
+app.get('/post', (req, res) => {
+	Blogpost.find().limit(10)
+	.then(blogposts => {
+		res.json({
+			blogposts: blogposts.map(post => post.serialize())
+		});
+	})
+	.catch(err => {
+		console.log(err);
+		res.status(500).json({message: "Internal server error"});
+	});
+});
+
+app.get('/post/:id', (req, res) => {
+	Blogpost.findById(req.params.id)
+	.then(post => res.json(post.serialize()))
+	.catch(err => {
+		console.log(err);
+		res.status(500).json({message: "Internal Server Error"});
+	})
+});
+
+
 
 
 
