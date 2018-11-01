@@ -6,6 +6,9 @@ const mongoose = require('mongoose');
 const blogpostSchema = mongoose.Schema({
     title: {type: String, required: true},
     content: {type: String, required: true},
+    // ------question-------
+    // should required be added to the author or to
+    // the first name and last name?
     author: {
         firstName: String,
         lastName: String
